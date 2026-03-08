@@ -1,0 +1,85 @@
+name: Validate Power
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: Validate POWER.md exists
+        run: |
+          if [ ! -f "POWER.md" ]; then
+            echo "Error: POWER.md not found"
+            exit 1
+          fi
+          echo "✓ POWER.md found"
+      
+      - name: Validate mcp.json syntax
+        run: |
+          python -c "import json; json.load(open('mcp.json'))"
+          echo "✓ mcp.json is valid JSON"
+      
+      - name: Validate mcp.json structure
+        run: |
+          python -c "
+          import json
+          with open('mcp.json') as f:
+              config = json.load(f)
+          assert 'mcpServers' in config, 'Missing mcpServers key'
+          assert 'ha-dev-tools' in config['mcpServers'], 'Missing ha-dev-tools server'
+          server = config['mcpServers']['ha-dev-tools']
+          assert 'command' in server, 'Missing command'
+          assert 'args' in server, 'Missing args'
+          assert server['command'] == 'uvx', 'Command should be uvx'
+          assert 'ha-dev-tools-mcp' in str(server['args']), 'Args should reference ha-dev-tools-mcp'
+          print('✓ mcp.json structure is valid')
+          "
+      
+      - name: Validate steering directory
+        run: |
+          if [ ! -d "steering" ]; then
+            echo "Error: steering directory not found"
+            exit 1
+          fi
+          echo "✓ steering directory found"
+      
+      - name: Check steering files
+        run: |
+          for file in steering/*.md; do
+            if [ -f "$file" ]; then
+              echo "✓ Found: $file"
+            fi
+          done
+      
+      - name: Validate README.md exists
+        run: |
+          if [ ! -f "README.md" ]; then
+            echo "Error: README.md not found"
+            exit 1
+          fi
+          echo "✓ README.md found"
+      
+      - name: Check for old package references
+        run: |
+          echo "Checking for old package name references..."
+          if grep -r "ha-config-manager-mcp" POWER.md mcp.json steering/ README.md 2>/dev/null; then
+            echo "Error: Found references to old package name 'ha-config-manager-mcp'"
+            exit 1
+          fi
+          if grep -r "ha_config_manager" POWER.md steering/ README.md 2>/dev/null; then
+            echo "Error: Found references to old integration name 'ha_config_manager'"
+            exit 1
+          fi
+          echo "✓ No old package references found"
