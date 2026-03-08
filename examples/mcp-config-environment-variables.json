@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "ha-dev-tools": {
+      "command": "uvx",
+      "args": ["--from", "ha-dev-tools-mcp", "ha-dev-tools-mcp"],
+      "env": {
+        "HA_URL": "${HA_URL}",
+        "HA_TOKEN": "${HA_TOKEN}"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

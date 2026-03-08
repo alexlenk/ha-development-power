@@ -1,0 +1,11 @@
+# Minimal configuration for ha_dev_tools custom integration
+# Add this to your Home Assistant configuration.yaml
+
+ha_dev_tools:
+  security:
+    allowed_paths:
+      # Core configuration files
+      - /config/configuration.yaml
+      - /config/automations.yaml
+      - /config/scripts.yaml
+      - /config/scenes.yaml

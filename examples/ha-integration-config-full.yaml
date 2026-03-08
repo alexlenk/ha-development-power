@@ -1,0 +1,46 @@
+# Full configuration for ha_dev_tools custom integration
+# Add this to your Home Assistant configuration.yaml
+
+ha_dev_tools:
+  security:
+    # Files you want to access (read and write)
+    allowed_paths:
+      # Core configuration files
+      - /config/configuration.yaml
+      - /config/automations.yaml
+      - /config/scripts.yaml
+      - /config/scenes.yaml
+      - /config/groups.yaml
+      - /config/customize.yaml
+      
+      # Configuration directories
+      - /config/packages/*
+      - /config/blueprints/*
+      - /config/themes/*
+      
+      # Safe storage files (UI-managed)
+      - /config/.storage/lovelace*
+      - /config/.storage/automation
+      - /config/.storage/script
+      - /config/.storage/scene
+      - /config/.storage/input_*
+      - /config/.storage/timer
+      - /config/.storage/counter
+      - /config/.storage/zone
+      - /config/.storage/person
+      
+      # Addon configurations (optional)
+      - /addon_configs/*/config.yaml
+      - /addon_configs/*/options.json
+      
+      # Custom component configurations (optional)
+      - /config/custom_components/*/config.yaml
+
+# Security Notes:
+# - Only admin users can access the API
+# - Files must be explicitly allowed in allowed_paths
+# - Sensitive files are automatically blocked (secrets.yaml, auth files, etc.)
+# - Use glob patterns (*) for directory access
+# - Write operations include automatic YAML validation
+# - File backups are created before overwriting
+# - Rate limiting prevents abuse (10 writes per minute per user)

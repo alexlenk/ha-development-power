@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "ha-dev-tools": {
+      "command": "uvx",
+      "args": ["--from", "ha-dev-tools-mcp", "ha-dev-tools-mcp"],
+      "env": {
+        "HA_URL": "http://192.168.1.100:8123",
+        "HA_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhYmNkZWYxMjM0NTY3ODkwIiwiaWF0IjoxNzA5MjQwMDAwLCJleHAiOjIwMjQ2MDAwMDB9.example_token_signature"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "ha-dev-tools": {
+      "command": "uvx",
+      "args": ["--from", "ha-dev-tools-mcp", "ha-dev-tools-mcp"],
+      "env": {
+        "HA_URL": "${HA_URL}",
+        "HA_TOKEN": "${HA_TOKEN}"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "get_states",
+        "get_config",
+        "list_services",
+        "list_events",
+        "render_template",
+        "validate_template",
+        "list_config_files",
+        "read_config_file",
+        "get_file_metadata",
+        "batch_get_metadata"
+      ]
+    }
+  }
+}
