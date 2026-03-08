@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "ha-config-manager": {
+    "ha-dev-tools": {
       "command": "uvx",
-      "args": ["--refresh", "--from", "ha-config-manager-mcp", "ha-config-manager"],
+      "args": ["--refresh", "--from", "ha-dev-tools-mcp", "ha-dev-tools-mcp"],
       "env": {
         "HA_URL": "${HA_URL}",
         "HA_TOKEN": "${HA_TOKEN}"
