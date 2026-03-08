@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "ha-config-manager": {
+      "command": "uvx",
+      "args": ["--refresh", "--from", "ha-config-manager-mcp", "ha-config-manager"],
+      "env": {
+        "HA_URL": "${HA_URL}",
+        "HA_TOKEN": "${HA_TOKEN}"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
