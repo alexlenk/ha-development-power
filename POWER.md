@@ -375,7 +375,7 @@ Edit the mcp.json file directly with your credentials:
    ```json
    {
      "mcpServers": {
-       "ha-config-manager": {
+       "ha-dev-tools": {
          "env": {
            "HA_URL": "http://192.168.4.64:8123",
            "HA_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -411,9 +411,9 @@ For either option, you need a token from Home Assistant:
 ```json
 {
   "mcpServers": {
-    "ha-config-manager": {
+    "ha-dev-tools": {
       "command": "uvx",
-      "args": ["--from", "ha-config-manager-mcp", "ha-config-manager"],
+      "args": ["--from", "ha-dev-tools-mcp", "ha-dev-tools-mcp"],
       "env": {
         "HA_URL": "${HA_URL}",
         "HA_TOKEN": "${HA_TOKEN}"
@@ -429,9 +429,9 @@ For either option, you need a token from Home Assistant:
 ```json
 {
   "mcpServers": {
-    "ha-config-manager": {
+    "ha-dev-tools": {
       "command": "uvx",
-      "args": ["--from", "ha-config-manager-mcp", "ha-config-manager"],
+      "args": ["--from", "ha-dev-tools-mcp", "ha-dev-tools-mcp"],
       "env": {
         "HA_URL": "http://192.168.4.64:8123",
         "HA_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -444,13 +444,13 @@ For either option, you need a token from Home Assistant:
 ```
 
 ### 4. Custom Integration (For File Access)
-To enable file and log management tools, install the `ha_config_manager` custom integration:
+To enable file and log management tools, install the `ha_dev_tools` custom integration:
 
 **Installation:**
-1. Copy `src/ha-integration/custom_components/ha_config_manager/` to your HA `custom_components/` directory
+1. Copy `src/ha-integration/custom_components/ha_dev_tools/` to your HA `custom_components/` directory
 2. Add to `configuration.yaml`:
    ```yaml
-   ha_config_manager:
+   ha_dev_tools:
      security:
        allowed_paths:
          - /config/configuration.yaml
@@ -465,7 +465,7 @@ To enable file and log management tools, install the `ha_config_manager` custom 
 
 ## Available MCP Servers
 
-This power uses a single MCP server: `ha-config-manager`
+This power uses a single MCP server: `ha-dev-tools`
 
 ### MCP Tools (17 total)
 
@@ -758,8 +758,8 @@ Use get_history tool:
 **Cause:** Custom integration not installed or not loaded
 
 **Solution:**
-1. Verify integration is in `custom_components/ha_config_manager/`
-2. Check `configuration.yaml` has `ha_config_manager:` entry
+1. Verify integration is in `custom_components/ha_dev_tools/`
+2. Check `configuration.yaml` has `ha_dev_tools:` entry
 3. Restart Home Assistant
 4. Check HA logs for integration errors
 
@@ -824,7 +824,7 @@ Use get_history tool:
 Add to your `configuration.yaml`:
 
 ```yaml
-ha_config_manager:
+ha_dev_tools:
   security:
     # Files you want to access (read and write)
     allowed_paths:
