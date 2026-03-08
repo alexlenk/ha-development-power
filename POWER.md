@@ -2,6 +2,7 @@
 name: "home-assistant-development"
 displayName: "Home Assistant Development"
 description: "Complete development toolkit for Home Assistant with 17 MCP tools for file access, template testing, entity management, and system information. Eliminates copy/paste friction with direct HA API integration."
+icon: "🏠"
 keywords: ["home-assistant", "ha", "homeassistant", "hass", "templates", "jinja2", "automation", "smart-home", "development", "testing", "debugging", "configuration.yaml", "automations.yaml", "scripts.yaml", "packages", "configuration", "integration", "entity", "state", "service"]
 author: "Alex Lenk"
 ---
