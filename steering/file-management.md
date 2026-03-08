@@ -17,7 +17,7 @@ The file management tools provide secure, controlled access to your Home Assista
 File access is controlled by the `allowed_paths` configuration in your `configuration.yaml`:
 
 ```yaml
-ha_config_manager:
+ha_dev_tools:
   security:
     allowed_paths:
       - /config/configuration.yaml
@@ -988,7 +988,7 @@ Read .storage/automation
 ### 1. Use Allowed Paths Wisely
 Only allow access to files you need:
 ```yaml
-ha_config_manager:
+ha_dev_tools:
   security:
     allowed_paths:
       # Core files
@@ -1102,7 +1102,7 @@ homeassistant:
 **Cause**: Custom integration not installed
 
 **Solution**:
-1. Install ha_config_manager integration
+1. Install ha_dev_tools integration
 2. Add configuration to configuration.yaml
 3. Restart Home Assistant
 

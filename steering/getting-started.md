@@ -73,9 +73,9 @@ This approach stores credentials directly in the configuration file.
    ```json
    {
      "mcpServers": {
-       "ha-config-manager": {
+       "ha-dev-tools": {
          "command": "uvx",
-         "args": ["--from", "ha-config-manager-mcp", "ha-config-manager"],
+         "args": ["--from", "ha-dev-tools-mcp", "ha-dev-tools-mcp"],
          "env": {
            "HA_URL": "http://192.168.1.100:8123",
            "HA_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
@@ -89,7 +89,7 @@ This approach stores credentials directly in the configuration file.
 
 3. **Save the file**
 
-4. **In Kiro**, go to MCP Servers view and click "Reconnect" for ha-config-manager
+4. **In Kiro**, go to MCP Servers view and click "Reconnect" for ha-dev-tools
 
 ### Configuration Values
 
@@ -118,16 +118,16 @@ The custom integration enables file and log access tools. Without it, you'll sti
 
 1. **Locate the integration files**:
    ```
-   src/ha-integration/custom_components/ha_config_manager/
+   src/ha-integration/custom_components/ha_dev_tools/
    ```
 
 2. **Copy to Home Assistant**:
-   - If HA is local: Copy to `/config/custom_components/ha_config_manager/`
+   - If HA is local: Copy to `/config/custom_components/ha_dev_tools/`
    - If HA is remote: Use file editor add-on or SFTP
 
 3. **Add configuration** to `configuration.yaml`:
    ```yaml
-   ha_config_manager:
+   ha_dev_tools:
      security:
        allowed_paths:
          # Core configuration files
@@ -184,7 +184,7 @@ import asyncio
 import os
 import sys
 sys.path.insert(0, 'src/config-manager/src')
-from ha_config_manager.connection.api import HAAPIClient
+from ha_dev_tools.connection.api import HAAPIClient
 
 async def test():
     client = HAAPIClient(os.getenv('HA_URL'), os.getenv('HA_TOKEN'))
@@ -218,7 +218,7 @@ Once published to a power registry:
 
 1. **Check MCP Server Status**:
    - Open Kiro
-   - Look for "ha-config-manager" in MCP Servers panel
+   - Look for "ha-dev-tools" in MCP Servers panel
    - Status should be "Connected" or "Running"
 
 2. **Test a Tool**:
@@ -251,7 +251,7 @@ Once published to a power registry:
 - Restart HA after installation
 - Verify configuration.yaml syntax
 
-### Issue: "Module not found: ha_config_manager"
+### Issue: "Module not found: ha_dev_tools"
 **Solution**:
 - Check PYTHONPATH in mcp.json
 - Verify Python dependencies installed
@@ -280,12 +280,12 @@ python test_real_ha_mcp.py
 
 ### Integration Location
 ```
-/config/custom_components/ha_config_manager/
+/config/custom_components/ha_dev_tools/
 ```
 
 ### Configuration
 ```yaml
-ha_config_manager:
+ha_dev_tools:
   security:
     allowed_paths:
       - /config/configuration.yaml
